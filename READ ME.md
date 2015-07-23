@@ -3,12 +3,13 @@
 *July 21, 2015*  
   
 
+**Please note that you must have the RESHAPE2 package installed in order to run this script!**
 
-## Overview
-
-30 volunteers performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data.  
+ 
 
 **run_analysis** analyzes and summarizes the mean and standard deviation data from various measurements collected from  the accelerometers from the Samsung Galaxy S smartphone. 
+
+Below, is the process that the script follows. To invoke the script, simply type run_analysis()at the prompt. 
 
 ### Step 0
 **Download Files**
@@ -16,7 +17,8 @@
 1. Set up working directory.  
 2. Create folder if necessary.  
 3. Download and unzip files.  
-4. Remove zipped file when done.  
+4. Remove zipped file when done.
+5. Load reshape library. (It does not install the package for you.)  
 
 
 ### Step 1

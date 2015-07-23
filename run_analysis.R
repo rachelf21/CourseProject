@@ -11,6 +11,7 @@ run_analysis <- function() {
         download.file(fileURL,"Samsung.zip",method="curl")
         unzip("Samsung.zip")
         file.remove("Samsung.zip")
+        library(reshape2)
         
         
         ## *********STEP 1 MERGE TEST AND TRAIN DATA IN ONE FILE*********
