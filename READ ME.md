@@ -53,6 +53,6 @@ Below, is the process that the script follows. To invoke the script, simply type
 1. Load the dplyr library. (Note: it does not install the package for you.)
 2. Group by Subject, then Activity.
 3. Get the mean for each variable column.
-4. Save the object so that it can be retrieved after the function.  (Extra step,but it's handy to have as reference.)
-5. Write the data to a text file.
+4. Write the data to a text file.
+5. *This is an extra step, but I find it useful to be able to view the object, after running the function. So, I save the object by calling saveRDS. To retrieve it afterwards, simply type at the prompt: summary <- readRDS("my_summary.rds")*
 

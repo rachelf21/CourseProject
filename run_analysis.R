@@ -54,6 +54,6 @@ run_analysis <- function() {
         all_data_grouped<-group_by(all_data,Subject,Activity)
         summary<-summarise_each(all_data_grouped,funs(mean))
         
-        summary<-saveRDS(summary, "my_summary.rds")
-        write.table(summary, row.name=FALSE, file = "summary_file.txt")
+        write.table(summary, row.name=FALSE, file = "my_summary.txt")
+        saveRDS(summary, "my_summary.rds")
 }
