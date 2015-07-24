@@ -3,7 +3,7 @@
 *July 21, 2015*  
   
 
-**Please note that you must have the RESHAPE2 package installed in order to run this script!**
+**Please note that you must have the DPLYR package installed in order to run this script!**
 
  
 
@@ -50,16 +50,10 @@ Below, is the process that the script follows. To invoke the script, simply type
 ### Step 5
 **Create tidy data with average of each variable for each subject and activity**  
 
-Create a loop that does the following:
 
-1. Extract each subject's data.
-2. For each subject, "melt" then "cast" each variable according to Activity.
-3. Get the mean for each of those variables.
-4. Add the subject number to each dataset.
-5. Save this dataset in a temp variable.
-6. Combine the resulting dataset with the previous dataset (stored in temp - empty for the first one.) 
+1. Load the dplyr library
+2. Group by Sujbect, then Activity
+3. Get the mean for each variable column.
+4. Save the object so that it can be retrieved after the function.  (Extra step,but it's handy to have as reference.)
+5. Write the data to a text file.
 
-Repeat for next subject.
-
-7. Save the object so that it can be retrieved after the function.  (Extra step,but it's handy to have as reference.)
-9. Write the data to a text file.

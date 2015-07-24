@@ -11,7 +11,7 @@ run_analysis <- function() {
         download.file(fileURL,"Samsung.zip",method="curl")
         unzip("Samsung.zip")
         file.remove("Samsung.zip")
-        library(reshape2)
+        library(dplyr)
         
         
         ## *********STEP 1 MERGE TEST AND TRAIN DATA IN ONE FILE*********
@@ -50,17 +50,12 @@ run_analysis <- function() {
         all_data$Activity<-factor(all_data$Activity, labels=activities)
         
         ## ********* STEP 5 CREATE TIDY DATA WITH AVERAGE OF EACH VARIABLE FOR EACH SUBJECT AND ACTIVITY 
-        cols<-colnames(all_data[3:68])
-        temp<-data.frame()
-        for (w in 1:30) {
-                subject_data<-all_data[all_data$Subject==w,]
-                data_melt<-melt(subject_data,id=c("Subject","Activity"),measure.vars=cols)
-                subjects<-dcast(data_melt,Activity ~ variable, mean)
-                Subject<-rep(w,nrow(subjects))
-                subjects<-cbind(Subject,subjects)
-                subjects<-rbind(temp,subjects)
-                temp<-subjects
-        }
-        summary<-saveRDS(subjects, "my_summary.rds")
-        write.table(subjects, row.name=FALSE, file = "summary_file.txt")
+        library(dplyr)
+        
+        all_data_grouped<-group_by(all_data,Subject,Activity)
+        summary<-summarise_each(all_data_grouped,funs(mean))
+        
+        
+        summary<-saveRDS(summary, "my_summary.rds")
+        write.table(summary, row.name=FALSE, file = "summary_file.txt")
 }
