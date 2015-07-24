@@ -11,8 +11,6 @@ run_analysis <- function() {
         download.file(fileURL,"Samsung.zip",method="curl")
         unzip("Samsung.zip")
         file.remove("Samsung.zip")
-        library(dplyr)
-        
         
         ## *********STEP 1 MERGE TEST AND TRAIN DATA IN ONE FILE*********
         ## retrieve and combine test data
@@ -44,6 +42,7 @@ run_analysis <- function() {
         pos<-sort(c(1,2,grep("mean\\(",labels), grep("std",labels)))
         all_data<-all_data[,pos]
         
+        
         ## ********* STEP 4 USE DESCRIPTIVE NAMES FOR ACTIVITIES 
         activities<-read.table("activity_labels.txt")
         activities<-activities[,2]
@@ -54,7 +53,6 @@ run_analysis <- function() {
         
         all_data_grouped<-group_by(all_data,Subject,Activity)
         summary<-summarise_each(all_data_grouped,funs(mean))
-        
         
         summary<-saveRDS(summary, "my_summary.rds")
         write.table(summary, row.name=FALSE, file = "summary_file.txt")

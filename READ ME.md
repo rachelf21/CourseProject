@@ -3,13 +3,13 @@
 *July 21, 2015*  
   
 
-**Please note that you must have the DPLYR package installed in order to run this script!**
+**Please note that you must have the *dplyr* package installed in order to run this script!**
 
  
 
 **run_analysis** analyzes and summarizes the mean and standard deviation data from various measurements collected from  the accelerometers from the Samsung Galaxy S smartphone. 
 
-Below, is the process that the script follows. To invoke the script, simply type run_analysis()at the prompt. 
+Below, is the process that the script follows. To invoke the script, simply type run_analysis() at the prompt. 
 
 ### Step 0
 **Download Files**
@@ -18,7 +18,6 @@ Below, is the process that the script follows. To invoke the script, simply type
 2. Create folder if necessary.  
 3. Download and unzip files.  
 4. Remove zipped file when done.
-5. Load reshape library. (It does not install the package for you.)  
 
 
 ### Step 1
@@ -42,7 +41,7 @@ Below, is the process that the script follows. To invoke the script, simply type
 2. Extract all those columns.
 
 ### Step 4
-**Use descriptve names for activities instead of numbers**  
+**Use descriptive names for activities instead of numbers**  
 
 1. Retrieve activity names from the given text file.
 2. Transform the numbers into factors, using these names as factor labels.
@@ -51,8 +50,8 @@ Below, is the process that the script follows. To invoke the script, simply type
 **Create tidy data with average of each variable for each subject and activity**  
 
 
-1. Load the dplyr library
-2. Group by Sujbect, then Activity
+1. Load the dplyr library. (Note: it does not install the package for you.)
+2. Group by Subject, then Activity.
 3. Get the mean for each variable column.
 4. Save the object so that it can be retrieved after the function.  (Extra step,but it's handy to have as reference.)
 5. Write the data to a text file.

@@ -12,3 +12,4 @@ The resulting dataset is 180 rows of observations, in tidy wide format.
 Of the original 561 measurements, only 66 measurements that reflect the mean and standard deviation were extracted. For each of thse 66 measurements, the average was then calculated for each subject (30), for each activty (6), resulting in a dataset with 180 rows, and 68 columns.
 
 Each row includes one activity per subject, and the average for each measurement. 
+
