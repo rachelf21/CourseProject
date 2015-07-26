@@ -1,7 +1,7 @@
 
 run_analysis <- function() {
         
-        ## *********STEP 0 DOWNLOAD AND UNZIP FILES *********
+        ## *********STEP 0 DOWNLOAD AND UNZIP FILES*********
  
         fileURL<-"https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip "
         
@@ -11,7 +11,7 @@ run_analysis <- function() {
         download.file(fileURL,"Samsung.zip",method="curl")
         unzip("Samsung.zip")
         file.remove("Samsung.zip")
-        
+
         ## *********STEP 1 MERGE TEST AND TRAIN DATA IN ONE FILE*********
         ## retrieve and combine test data
         setwd("UCI HAR Dataset/test")
@@ -31,29 +31,36 @@ run_analysis <- function() {
         all_data<-rbind(test_data, train_data)
         setwd("../")
         
-        
-        ## ******* STEP 2 LABEL DATA SET WITH DESCRIPTIVE VARIABLE NAMES
+             
+        ## ******* STEP 2 EXTRACT ONLY DATA FOR MEAN AND STD FOR EACH MEASUREMENT *******
         features<-read.table("features.txt")
         labels<-c("Subject","Activity",as.character(features[,2]))
         colnames(all_data)<-labels
-        
-        
-        ## ******* STEP 3 EXTRACT MEASUREMENT ON MEAN AND STD FOR EACH MEASUREMENT *******
         pos<-sort(c(1,2,grep("mean\\(",labels), grep("std",labels)))
+        labels<-labels[pos]    
         all_data<-all_data[,pos]
         
         
-        ## ********* STEP 4 USE DESCRIPTIVE NAMES FOR ACTIVITIES 
+        ## ********* STEP 3 USE DESCRIPTIVE NAMES FOR ACTIVITIES 
         activities<-read.table("activity_labels.txt")
         activities<-activities[,2]
         all_data$Activity<-factor(all_data$Activity, labels=activities)
         
+        ## ******* STEP 4 LABEL DATASET WITH DESCRIPTIVE VARIABLE NAMES
+        newlabels<-gsub("-",".",labels)
+        newlabels<-gsub(",","_",newlabels)
+        newlabels<-gsub("\\(","",newlabels)
+        newlabels<-gsub("\\)","",newlabels)
+        colnames(all_data)<-newlabels
+        
         ## ********* STEP 5 CREATE TIDY DATA WITH AVERAGE OF EACH VARIABLE FOR EACH SUBJECT AND ACTIVITY 
-        library(dplyr)
+         library(dplyr)
         
-        all_data_grouped<-group_by(all_data,Subject,Activity)
-        summary<-summarise_each(all_data_grouped,funs(mean))
-        
-        write.table(summary, row.name=FALSE, file = "my_summary.txt")
-        saveRDS(summary, "my_summary.rds")
+         all_data_grouped<-group_by(all_data,Subject,Activity)
+         summary<-summarise_each(all_data_grouped,funs(mean))
+         
+         write.table(summary, row.name=FALSE, file = "my_summary.txt")
+         saveRDS(summary, "my_summary.rds")
+
+
 }
