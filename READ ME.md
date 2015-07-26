@@ -54,9 +54,10 @@ Below, is the process that the script follows. To invoke the script, simply type
 
 
 ### Step 4
-**Label dataset with descriptive variable names**  
-1. Replace all instances of dashes with periods.
-2. Replace all instances of commas with underscores.
+**Label dataset with descriptive variable names**    
+
+1. Replace all instances of dashes with periods.  
+2. Replace all instances of commas with underscores.  
 3. Remove all open parenthesis.
 4. Remove all closing parenthesis.
 5. Apply newlabels to column names.
